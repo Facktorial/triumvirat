@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float speed;
+    private Vector3 direction;
+
+    private void Update()
     {
-        
+        Shoot();        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init(float speed, Vector3 direction)
     {
-        
+        this.speed = speed;
+        this.direction = direction;
+    }
+
+    void Shoot()
+    {
+        transform.position += direction * speed * Time.deltaTime;
     }
 }
