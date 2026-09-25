@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b5b6845eb817d8aa970952bcf4a735, type: 3}
   m_Name: PanNonBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
-  itemSpeed: 0
-  movementSpeed: 0
-  damage: 0
+  itemSpeed: 1
+  movementSpeed: 2
+  damage: 1
   itemType: 0
+  prefab: {fileID: 0}
