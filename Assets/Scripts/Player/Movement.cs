@@ -1,10 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float playerSpeed;
+    [SerializeField] float playerSpeedOrigin;
+    float playerSpeed;
     [SerializeField] float projectileSpeed;
     [SerializeField] GameObject projectile;
+
+    Player player;
     
     public Direction currentDirection;
 
@@ -20,6 +24,11 @@ public class Movement : MonoBehaviour
     public KeyCode right;
     public KeyCode shoot;
 
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(shoot))
@@ -28,9 +37,10 @@ public class Movement : MonoBehaviour
         }
 
         MovementInput();
+        WallColission();
     }
 
-    Vector3 GetDirection()
+    public Vector3 GetDirection()
     {
         switch (currentDirection)
         {
@@ -121,8 +131,27 @@ public class Movement : MonoBehaviour
 
     void Shoot()
     {
+        if (!player.canShoot) return;
+
         var bullet = Instantiate(projectile.transform);
         bullet.GetComponent<Projectile>().Init(projectileSpeed, GetDirection());
-        bullet.transform.position = this.transform.position;
+        bullet.transform.position = this.transform.position + GetDirection();
+    }
+
+    void WallColission()
+    {
+        Ray ray = new Ray(transform.position, GetDirection());
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 1))
+        {
+            if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Counter"))
+            {
+                playerSpeed = 0;
+            }
+        }
+        else
+        {
+            playerSpeed = playerSpeedOrigin;
+        }   
     }
 }
