@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptables/Item")]
@@ -13,4 +14,6 @@ public class ItemScriptable : ScriptableObject
         NonBreakable
     }
     public ItemType itemType;
+
+    public GameObject prefab;
 }
