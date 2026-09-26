@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
 
-    bool moving = false;
+    public bool moving = false;
 
     private void Start()
     {

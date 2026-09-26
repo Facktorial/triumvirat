@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,10 +11,15 @@ public class Player : MonoBehaviour
     Movement movement;
     [HideInInspector] public Item currentItem;
     Item sellectedItem;
+    [SerializeField] private Transform handSocket;
 
     public bool canShoot = true;
     [SerializeField] GameObject projectile;
     [SerializeField] KeyCode shoot;
+
+    [SerializeField] PlayerVisuals playerVisuals;
+
+    Transform itemInHand;
 
     public PlayerState currentPlayerState;
 
@@ -27,6 +34,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         movement = GetComponent<Movement>();
+        playerVisuals = GetComponent<PlayerVisuals>();
         currentPlayerState = PlayerState.Alive;
     }
 
@@ -41,6 +49,8 @@ public class Player : MonoBehaviour
         {
             ItemPickUp();
         }
+
+        
     }
 
     public void Hit(int damage)
@@ -54,9 +64,19 @@ public class Player : MonoBehaviour
             currentPlayerState = PlayerState.Dead;
             movement.canMove = false;
             GameManager.Instance.AddScore(id);
-            GameManager.Instance.RestartGame();
+            StartCoroutine(DeathRoutine());
             print("Player dead");
+
+            playerVisuals.PlayDie();
         }
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        yield return new WaitForSeconds(3);
+        GameManager.Instance.RestartGame();
+
+        playerVisuals.PlayRewive();
     }
 
     void ItemPickUp()
@@ -87,7 +107,11 @@ public class Player : MonoBehaviour
         availableItems.Remove(closestItem);
         currentItem = closestItem;
         canShoot = true;
+        playerVisuals.PlayPickUp();
         print("Got item");
+
+        var _item = Instantiate(currentItem.GetItem().visuals, handSocket);
+        itemInHand = _item;
     }
 
     void Shoot()
@@ -102,6 +126,10 @@ public class Player : MonoBehaviour
 
         currentItem = null;
         canShoot = false;
+
+        Destroy(itemInHand.gameObject);
+
+        playerVisuals.PlayThrow();
     }
 
     private void OnTriggerEnter(Collider other)
