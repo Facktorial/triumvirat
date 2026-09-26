@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BowlBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 30
-  stoppingForceMultiplier: 10
+  stoppingForceMultiplier: 1
   damage: 1
-  audioClipName: 
+  audioClipName: Glass1
   visuals: {fileID: 2002405959572973897, guid: 6d672655e396c96458862918215f703c, type: 3}
   itemType: 0
