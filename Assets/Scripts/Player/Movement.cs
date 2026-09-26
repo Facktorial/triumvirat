@@ -1,16 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float playerSpeedOrigin;
-    float playerSpeed;
-    [SerializeField] float projectileSpeed;
-    [SerializeField] GameObject projectile;
+    [SerializeField] float stoppingFroceOrigin;
+    [SerializeField] float stoppingForce;
+
+    Rigidbody rb;
 
     Player player;
     
     public Direction currentDirection;
+
+    public bool canMove = true;
 
     public enum Direction
     {
@@ -22,22 +23,34 @@ public class Movement : MonoBehaviour
     public KeyCode down;
     public KeyCode left;
     public KeyCode right;
-    public KeyCode shoot;
+
+    bool moving = false;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(shoot))
+        if (!moving)
         {
-            Shoot();
+            rb.linearDamping = 100;
+        }
+        else
+        {
+            rb.linearDamping = stoppingForce;
         }
 
+        if (player.currentItem != null)
+            stoppingForce = stoppingFroceOrigin * player.currentItem.GetItem().stoppingForceMultiplier;
+
+        else
+            stoppingForce = stoppingFroceOrigin;
+
         MovementInput();
-        WallColission();
+        //WallColission();
     }
 
     public Vector3 GetDirection()
@@ -122,20 +135,19 @@ public class Movement : MonoBehaviour
             currentDirection = Direction.Right;
             Move(GetDirection());
         }
+        else
+        {
+            moving = false;
+        }
     }
 
     void Move(Vector3 direction)
     {
-        transform.position += direction * playerSpeed * Time.deltaTime;
-    }
+        moving = true;
+        if (!canMove) return;
+        //transform.position += direction * playerSpeed * Time.deltaTime;
 
-    void Shoot()
-    {
-        if (!player.canShoot) return;
-
-        var bullet = Instantiate(projectile.transform);
-        bullet.GetComponent<Projectile>().Init(projectileSpeed, GetDirection());
-        bullet.transform.position = this.transform.position + GetDirection();
+        rb.AddForce(GetDirection(), ForceMode.VelocityChange);
     }
 
     void WallColission()
@@ -144,14 +156,14 @@ public class Movement : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 1))
         {
-            if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Counter"))
+            if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Counter") || hit.collider.CompareTag("Item"))
             {
-                playerSpeed = 0;
+                canMove = false;
             }
         }
         else
         {
-            playerSpeed = playerSpeedOrigin;
+            canMove = true;
         }   
     }
 }

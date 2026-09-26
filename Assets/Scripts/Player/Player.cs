@@ -1,17 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int id;
     [SerializeField] int health;
 
     Movement movement;
-    Item currentItem;
+    [HideInInspector] public Item currentItem;
     Item sellectedItem;
 
-    [HideInInspector] public bool canShoot = true;
-
+    public bool canShoot = true;
+    [SerializeField] GameObject projectile;
+    [SerializeField] KeyCode shoot;
 
     public PlayerState currentPlayerState;
+
+    [SerializeField] List<Item> availableItems = new List<Item>();
 
     public enum PlayerState
     {
@@ -27,10 +32,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (currentItem == null)
-            ItemCollision();
+        if (Input.GetKeyDown(shoot))
+        {
+            Shoot();
+        }
 
-        if (currentItem == null && Input.GetKeyDown(movement.shoot))
+        if (currentItem == null && Input.GetKeyDown(shoot))
         {
             ItemPickUp();
         }
@@ -45,44 +52,77 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             currentPlayerState = PlayerState.Dead;
+            movement.canMove = false;
+            GameManager.Instance.AddScore(id);
             print("Player dead");
         }
     }
 
     void ItemPickUp()
     {
-        if (sellectedItem != null)
+        if (currentItem != null) return;
+
+        Item closestItem = null;
+
+        foreach (Item item in availableItems)
         {
-            currentItem = sellectedItem;
-            print("Got item");
+            if (closestItem == null)
+            {
+                closestItem = item;
+                continue;
+            }
+
+            if (Vector3.Distance(transform.position, closestItem.transform.position) >
+                Vector3.Distance(transform.position, item.transform.position))
+            {
+                closestItem = item;
+            }
+        }
+
+        currentItem.gameObject.SetActive(false);
+        availableItems.Remove(closestItem);
+        currentItem = closestItem;
+        canShoot = true;
+        print("Got item");
+    }
+
+    void Shoot()
+    {
+        if (!canShoot || currentItem == null) return;
+
+        print("Shot");
+
+        var bullet = Instantiate(projectile.transform);
+        bullet.GetComponent<Projectile>().Init(currentItem.GetItem().itemSpeed, movement.GetDirection(), this);
+        bullet.transform.position = this.transform.position + movement.GetDirection();
+
+        currentItem = null;
+        canShoot = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (currentItem != null) return;
+
+        if (other.CompareTag("Item"))
+        {
+            Item item = other.GetComponent<Item>();
+
+            if (!availableItems.Contains(item))
+            {
+                availableItems.Add(item);
+                item.Sellect();
+            }
         }
     }
 
-    void ItemCollision()
+    private void OnTriggerExit(Collider other)
     {
-        Ray ray = new Ray(transform.position, movement.GetDirection());
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 1))
+        if (other.CompareTag("Item"))
         {
-            if (hit.collider.CompareTag("Item"))
-            {
-                if (sellectedItem != null)
-                {
-                    print("Item spotted");
-                    sellectedItem = hit.collider.gameObject.GetComponent<Item>();
-                    sellectedItem.Sellect();
-                    canShoot = false;
-                }
-            }
-            else
-            {
-                if (sellectedItem != null)
-                {
-                    sellectedItem.Desellect();
-                    sellectedItem = null;
-                    canShoot = false;
-                }
-            }
+            Item item = other.GetComponent<Item>();
+            availableItems.Remove(item);
+            item.Desellect();
         }
     }
 }

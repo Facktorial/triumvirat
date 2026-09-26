@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 803675390849065262}
   - component: {fileID: 3640096751997464585}
   - component: {fileID: 6710969407090185227}
+  - component: {fileID: 8799424746915998090}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -241,15 +242,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a40e79383134e46b91b41427de4409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
-  playerSpeedOrigin: 10
-  projectileSpeed: 10
-  projectile: {fileID: 4300758119902477025, guid: 19cf4db5c934f554b90484fabce939d4, type: 3}
+  stoppingFroceOrigin: 5
+  stoppingForce: 0
   currentDirection: 0
-  up: 273
-  down: 274
-  left: 276
-  right: 275
-  shoot: 32
+  canMove: 1
+  up: 119
+  down: 115
+  left: 97
+  right: 100
 --- !u!114 &6710969407090185227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,5 +262,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7267770e8b04c5478e980e2f5ce27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  id: 2
   health: 10
+  currentItem: {fileID: 0}
+  canShoot: 1
+  projectile: {fileID: 4300758119902477025, guid: 19cf4db5c934f554b90484fabce939d4, type: 3}
+  shoot: 113
   currentPlayerState: 0
+--- !u!54 &8799424746915998090
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689154249932246149}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1

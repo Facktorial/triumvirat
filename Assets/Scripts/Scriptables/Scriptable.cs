@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemScriptable : ScriptableObject
 {
     public float itemSpeed;
-    public float movementSpeed;
+    public float stoppingForceMultiplier;
     public float damage;
 
     public enum ItemType

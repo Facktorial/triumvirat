@@ -6,20 +6,25 @@ public class Projectile : MonoBehaviour
     private Vector3 direction;
     [SerializeField] int damage;
 
+    Player shooter;
+
     private void Update()
     {
         Shoot();        
     }
 
-    public void Init(float speed, Vector3 direction)
+    public void Init(float speed, Vector3 direction, Player shooter)
     {
         this.speed = speed;
         this.direction = direction;
+        this.shooter = shooter;
     }
 
     void Shoot()
     {
-        transform.position += direction * speed * Time.deltaTime;
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        rb.AddForce(direction * speed);
     }
 
     void Hit(Player player)
@@ -36,11 +41,15 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Hit(other.GetComponent<Player>());
+            Player target = other.GetComponent<Player>();
+
+            if (target == shooter) return;
+
+            Hit(target);
             Break();
         }
 
-        else if (other.CompareTag("Wall"))
+        else if (other.CompareTag("Wall") || other.CompareTag("Floor"))
         {
             Break();
         }

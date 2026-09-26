@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
     private void Start()
     {
         mesh = GetComponent<MeshRenderer>();
-        holder = new ItemHolder();
+        holder = GetComponent<ItemHolder>();
 
         mesh.material = baseMaterial;
     }
