@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour
         }
 
         if (player.currentItem != null)
-            stoppingForce = stoppingFroceOrigin * player.currentItem.GetItem().stoppingForceMultiplier;
+            stoppingForce = stoppingFroceOrigin * player.currentItem.GetItem().stoppingForceMultiplier * Time.deltaTime * 30;
 
         else
             stoppingForce = stoppingFroceOrigin;
@@ -147,7 +147,7 @@ public class Movement : MonoBehaviour
         if (!canMove) return;
         //transform.position += direction * playerSpeed * Time.deltaTime;
 
-        rb.AddForce(GetDirection(), ForceMode.VelocityChange);
+        rb.AddForce(GetDirection() * Time.deltaTime * 30, ForceMode.VelocityChange);
     }
 
     void WallColission()
