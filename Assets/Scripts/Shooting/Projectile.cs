@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour
 
     void Break()
     {
+        print("Bereaking");
         AudioManager.Instance.PlaySFX(item.audioClipName, transform.position);
         Destroy(gameObject);
     }
@@ -52,7 +53,7 @@ public class Projectile : MonoBehaviour
             Break();
         }
 
-        else if (other.CompareTag("Wall") || other.CompareTag("Floor"))
+        else if (!other.CompareTag("Counter"))
         {
             Break();
         }
