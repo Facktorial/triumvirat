@@ -1,11 +1,8 @@
 .health-bar {
-    position: absolute;
-    top: 24px;
-    right: 24px;
+    /* position/top/left/right/bottom are set at runtime by HealthBarController
+       via HudPositioning, so the same prefab can be placed at any corner
+       per instance without editing this file. */
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 6px 8px;
-    border-radius: 6px;
 }
 
 .heart {
