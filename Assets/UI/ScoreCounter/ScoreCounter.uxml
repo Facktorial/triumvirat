@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="ScoreCounter.uss" />
+
+    <ui:VisualElement name="score-counter" class="score-counter" picking-mode="Ignore">
+        <ui:VisualElement name="score-digit-0" class="score-digit" />
+        <ui:VisualElement name="score-digit-1" class="score-digit" />
+        <ui:VisualElement name="score-digit-2" class="score-digit" />
+        <ui:VisualElement name="score-digit-3" class="score-digit" />
+    </ui:VisualElement>
+</ui:UXML>
