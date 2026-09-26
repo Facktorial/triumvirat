@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] List<Item> availableItems = new List<Item>();
 
+    public Transform handSocket;
+    private Transform itemInHand;
+
+    private PlayerVisuals playerVisuals;
+
     public enum PlayerState
     {
         Alive,
@@ -30,6 +36,7 @@ public class Player : MonoBehaviour
         currentHealth = health;
 
         movement = GetComponent<Movement>();
+        playerVisuals = GetComponent<PlayerVisuals>();
         currentPlayerState = PlayerState.Alive;
     }
 
@@ -57,10 +64,20 @@ public class Player : MonoBehaviour
             currentPlayerState = PlayerState.Dead;
             movement.canMove = false;
             GameManager.Instance.AddScore(id);
-            GameManager.Instance.RestartGame();
             print("Player dead");
             currentHealth = health;
+
+            playerVisuals.PlayDie();
+            StartCoroutine(DeathRoutine());
         }
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        yield return new WaitForSeconds(3);
+        ResetPlayer();
+        GameManager.Instance.RestartGame();
+        playerVisuals.PlayRewive();
     }
 
     void ItemPickUp()
@@ -93,7 +110,11 @@ public class Player : MonoBehaviour
         availableItems.Remove(closestItem);
         currentItem = closestItem;
         canShoot = true;
+
+        playerVisuals.PlayPickUp();
         print("Got item");
+
+        itemInHand = Instantiate(currentItem.GetItem().visuals, handSocket);
     }
 
     void Shoot()
@@ -108,6 +129,10 @@ public class Player : MonoBehaviour
 
         currentItem = null;
         canShoot = false;
+
+        Destroy(itemInHand.gameObject);
+
+        playerVisuals.PlayThrow();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -141,6 +166,8 @@ public class Player : MonoBehaviour
         currentHealth = health;
         currentItem = null;
         canShoot = false;
+
+        
     }
 
     private void OnEnable()
