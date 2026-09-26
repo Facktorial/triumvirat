@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -12,6 +13,7 @@ public class Movement : MonoBehaviour
     public Direction currentDirection;
 
     public bool canMove = true;
+    public float stepSoundDelay;
 
     public enum Direction
     {
@@ -150,20 +152,11 @@ public class Movement : MonoBehaviour
         rb.AddForce(GetDirection(), ForceMode.VelocityChange);
     }
 
-    void WallColission()
+    IEnumerator SteppingSoundRoutine()
     {
-        Ray ray = new Ray(transform.position, GetDirection());
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 1))
+        while (true)
         {
-            if (hit.collider.CompareTag("Wall") || hit.collider.CompareTag("Counter") || hit.collider.CompareTag("Item"))
-            {
-                canMove = false;
-            }
+            AudioManager.Instance.PlayUI("Step1");
         }
-        else
-        {
-            canMove = true;
-        }   
     }
 }
