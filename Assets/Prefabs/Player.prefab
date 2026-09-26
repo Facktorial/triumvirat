@@ -248,6 +248,7 @@ MonoBehaviour:
   stoppingForce: 0
   currentDirection: 0
   canMove: 1
+  stepSoundDelay: 0.25
   up: 119
   down: 115
   left: 97

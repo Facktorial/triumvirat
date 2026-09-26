@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
             currentPlayerState = PlayerState.Dead;
             movement.canMove = false;
             GameManager.Instance.AddScore(id);
+            GameManager.Instance.RestartGame();
             print("Player dead");
         }
     }
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour
 
         if (closestItem == null) return;
 
-        closestItem.gameObject.SetActive(false);
+        closestItem.HideItem();
 
         availableItems.Remove(closestItem);
         currentItem = closestItem;
