@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
     void Hit(Player player)
     {
         player.Hit(damage);
-        player.GetComponent<Rigidbody>().AddForce(direction * 5);
+        player.GetComponent<Rigidbody>().AddForce(direction * 1000,ForceMode.VelocityChange);
     }
 
     void Break()
