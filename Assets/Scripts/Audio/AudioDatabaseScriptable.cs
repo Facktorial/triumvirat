@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptables/AudioDatabase")]
-public class AudioDatabaseScriptable : MonoBehaviour
+public class AudioDatabaseScriptable : ScriptableObject
 {
     public List<AudioClipData> audioClips;
 

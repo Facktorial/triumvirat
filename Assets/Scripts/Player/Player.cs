@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         print("Shot");
 
         var bullet = Instantiate(projectile.transform);
-        bullet.GetComponent<Projectile>().Init(currentItem.GetItem().itemSpeed, movement.GetDirection(), this);
+        bullet.GetComponent<Projectile>().Init(currentItem.GetItem().itemSpeed, movement.GetDirection(), this, currentItem.GetItem());
         bullet.transform.position = this.transform.position + movement.GetDirection();
 
         currentItem = null;
