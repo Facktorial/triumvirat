@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
         Shoot();        
     }
 
-    public void Init(float speed, Vector3 direction, Player shooter)
+    public void Init(float speed, Vector3 direction, Player shooter, ItemScriptable item)
     {
         this.speed = speed;
         this.direction = direction;
@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour
 
     void Break()
     {
+
         Destroy(gameObject);
     }
 

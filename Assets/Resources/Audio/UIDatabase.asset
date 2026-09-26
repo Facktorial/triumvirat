@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01b5b6845eb817d8aa970952bcf4a735, type: 3}
-  m_Name: Item
-  m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
-  itemSpeed: 500
-  stoppingForceMultiplier: 2
-  damage: 1
-  audioClipName: Hit1
-  itemType: 0
+  m_Script: {fileID: 11500000, guid: 3291f077e45309a4eaa5b3fe62c4dfc7, type: 3}
+  m_Name: UIDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::AudioDatabaseScriptable
+  audioClips: []
