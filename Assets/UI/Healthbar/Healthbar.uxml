@@ -7,5 +7,10 @@
         <ui:VisualElement name="heart-2" class="heart" />
         <ui:VisualElement name="heart-3" class="heart" />
         <ui:VisualElement name="heart-4" class="heart" />
+        <ui:VisualElement name="heart-5" class="heart" />
+        <ui:VisualElement name="heart-6" class="heart" />
+        <ui:VisualElement name="heart-7" class="heart" />
+        <ui:VisualElement name="heart-8" class="heart" />
+        <ui:VisualElement name="heart-9" class="heart" />
     </ui:VisualElement>
 </ui:UXML>

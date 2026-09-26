@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] int id;
-    [SerializeField] int health;
-    [SerializeField] int currentHealth;
+    [SerializeField] private int id;
+    [SerializeField] private int health = 10;
+
+    public int Id => id;
+    public int CurrentHealth => health;
 
     Movement movement;
     [HideInInspector] public Item currentItem;

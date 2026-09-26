@@ -11,7 +11,7 @@ public class ScoreCounterController : MonoBehaviour
 {
     private const int DigitCount = 4;
     private const int MinScore = 0;
-    private const int MaxScore = 1000;
+    private const int MaxScore = 9999;
 
     [Header("Digit textures 0-9, in order")]
     [SerializeField] private Texture2D[] digitTextures = new Texture2D[10];

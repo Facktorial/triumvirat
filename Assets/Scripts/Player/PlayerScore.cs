@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerScore : MonoBehaviour
 {
     private const int MinScore = 0;
-    private const int MaxScore = 1000;
+    private const int MaxScore = 9999;
 
     [SerializeField] private ScoreCounterController scoreCounter;
     [SerializeField] private int currentScore;

@@ -10,15 +10,15 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class HealthBarController : MonoBehaviour
 {
-    private const int HeartCount = 5;
+    private const int HeartCount = 10;
 
     [Header("Textures — import as Sprite (2D and UI), Filter Mode: Point, no Compression")]
     [SerializeField] private Texture2D heartFull;
     [SerializeField] private Texture2D heartEmpty;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth = 5;
-    [SerializeField] private int currentHealth = 5;
+    [SerializeField] private int maxHealth = HeartCount;
+    [SerializeField] private int currentHealth = HeartCount;
 
     [Header("Screen Position")]
     [SerializeField] private HudCorner corner = HudCorner.TopRight;
