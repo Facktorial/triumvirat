@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="Healthbar.uss" />
+
+    <ui:VisualElement name="health-bar" class="health-bar" picking-mode="Ignore">
+        <ui:VisualElement name="heart-0" class="heart" />
+        <ui:VisualElement name="heart-1" class="heart" />
+        <ui:VisualElement name="heart-2" class="heart" />
+        <ui:VisualElement name="heart-3" class="heart" />
+        <ui:VisualElement name="heart-4" class="heart" />
+    </ui:VisualElement>
+</ui:UXML>
