@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerVisuals : MonoBehaviour
