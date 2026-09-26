@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] int damage;
 
     Player shooter;
+    ItemScriptable item;
 
     private void Update()
     {
@@ -18,6 +19,7 @@ public class Projectile : MonoBehaviour
         this.speed = speed;
         this.direction = direction;
         this.shooter = shooter;
+        this.item = item;
     }
 
     void Shoot()
@@ -34,7 +36,7 @@ public class Projectile : MonoBehaviour
 
     void Break()
     {
-
+        AudioManager.Instance.PlaySFX(item.audioClipName, transform.position);
         Destroy(gameObject);
     }
 

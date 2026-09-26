@@ -19,18 +19,15 @@ public class AudioManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        SpawnSources();
-    }
-
     public void PlaySFX(string clipName, Vector3 position)
     {
         foreach (var source in sfxSourceList)
         {
+            print("Looking for source");
             if (!source.isPlaying)
             {
-                SetSource(source, sfxDatabase.GetClip(name), position);
+                print("Playing clip: " + clipName);
+                SetSource(source, sfxDatabase.GetClip(clipName), position);
                 break;
             }
         }
@@ -43,21 +40,23 @@ public class AudioManager : MonoBehaviour
 
     void SetSource(AudioSource source, AudioClipData clipData, Vector3 position)
     {
+        print("Playing SFX");
+
+        if (clipData == null)
+        {
+            print("No clip data");
+            return;
+        }
+
+
         source.clip = clipData.clip;
+        source.playOnAwake = false;
 
         if (clipData.randomPitch)
         {
             source.pitch += Random.Range(0f, 1f);
         }
-    }
 
-    void SpawnSources()
-    {
-        for (int i = 0; i < sfxSourcesCount; i++)
-        {
-            GameObject audioSource = new GameObject("sfxSource");
-            audioSource.transform.parent = transform;
-            audioSource.AddComponent<AudioSource>();
-        }
+        source.Play();
     }
 }
