@@ -1,0 +1,17 @@
+.health-bar {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+.heart {
+    width: 32px;
+    height: 28px;
+    margin-left: 4px;
+    -unity-background-scale-mode: scale-to-fit;
+    /* background-image is assigned at runtime from MainMenuController/HealthBarController */
+}
