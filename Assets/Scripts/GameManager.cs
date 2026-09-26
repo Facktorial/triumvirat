@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateScore(score1, score2);
     }
 
-    void RestartGame()
+    public void RestartGame()
     {
         foreach (Transform t in players)
         {

@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
 
     Player player;
-    
+
     public Direction currentDirection;
 
     public bool canMove = true;
@@ -32,6 +32,8 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
+
+        StartCoroutine(SteppingSoundRoutine());
     }
 
     private void Update()
@@ -156,7 +158,10 @@ public class Movement : MonoBehaviour
     {
         while (true)
         {
-            AudioManager.Instance.PlayUI("Step1");
+            if (moving)
+                AudioManager.Instance.PlaySFX("Hit2", transform.position);
+
+            yield return new WaitForSeconds(stepSoundDelay);
         }
     }
 }

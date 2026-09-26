@@ -1,0 +1,57 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="MainMenu.uss" />
+
+    <ui:VisualElement name="menu-root" class="menu-root">
+
+        <!-- Faint background grid / noise layer, purely decorative -->
+        <ui:VisualElement name="bg-overlay" class="bg-overlay" picking-mode="Ignore" />
+
+        <!-- Top-left case file / agency label, small brutalist metadata block -->
+        <ui:VisualElement name="header-block" class="header-block">
+            <ui:Label text="FEDERAL BUREAU OF MARRIAGE" class="eyebrow-label" />
+            <ui:Label text="CASE FILE // Novákovi" class="eyebrow-label eyebrow-label--dim" />
+        </ui:VisualElement>
+
+        <!-- Main title -->
+        <ui:VisualElement name="title-block" class="title-block">
+            <ui:Label text="TUTTO BENE, GET DOWN!" class="title-label" />
+        </ui:VisualElement>
+
+        <!-- Menu column -->
+        <ui:VisualElement name="menu-list" class="menu-list">
+
+            <ui:VisualElement name="item-new-game" class="menu-item">
+                <ui:Label text="01" class="menu-item__index" />
+                <ui:Label text="NEW GAME" class="menu-item__label" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="item-continue" class="menu-item">
+                <ui:Label text="02" class="menu-item__index" />
+                <ui:Label text="CONTINUE" class="menu-item__label" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="item-settings" class="menu-item">
+                <ui:Label text="03" class="menu-item__index" />
+                <ui:Label text="SETTINGS" class="menu-item__label" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="item-credits" class="menu-item">
+                <ui:Label text="04" class="menu-item__index" />
+                <ui:Label text="CREDITS" class="menu-item__label" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="item-exit" class="menu-item">
+                <ui:Label text="05" class="menu-item__index" />
+                <ui:Label text="EXIT" class="menu-item__label" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <!-- Bottom-right status footer -->
+        <ui:VisualElement name="footer-block" class="footer-block">
+            <ui:Label text="BUILD 0.1.0" class="footer-label" />
+            <ui:Label text="ALTERED WORLD EVENT: ACTIVE" class="footer-label footer-label--accent" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

@@ -48,13 +48,13 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-
+        source.pitch = 1;
         source.clip = clipData.clip;
         source.playOnAwake = false;
 
         if (clipData.randomPitch)
         {
-            source.pitch += Random.Range(0f, 1f);
+            source.pitch = 1 + Random.Range(0f, 1f);
         }
 
         source.Play();
