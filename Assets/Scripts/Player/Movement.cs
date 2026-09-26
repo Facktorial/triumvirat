@@ -60,28 +60,28 @@ public class Movement : MonoBehaviour
         switch (currentDirection)
         {
             case Direction.Up:
-                return new Vector3(0, 0, 1);
+                return new Vector3(0, 0, 1).normalized;
 
             case Direction.Down:
-                return new Vector3(0, 0, -1);
+                return new Vector3(0, 0, -1).normalized;
 
             case Direction.Left:
-                return new Vector3(-1, 0, 0);
+                return new Vector3(-1, 0, 0).normalized;
 
             case Direction.Right:
-                return new Vector3(1, 0, 0);
+                return new Vector3(1, 0, 0).normalized;
 
             case Direction.UpRight:
-                return new Vector3(1, 0, 1);
+                return new Vector3(1, 0, 1).normalized;
 
             case Direction.DownRight:
-                return new Vector3(1, 0, -1);
+                return new Vector3(1, 0, -1).normalized;
 
             case Direction.UpLeft:
-                return new Vector3(-1, 0, 1);
+                return new Vector3(-1, 0, 1).normalized;
 
             case Direction.DownLeft:
-                return new Vector3(-1, 0, -1);
+                return new Vector3(-1, 0, -1).normalized;
 
             default:
                 return Vector3.zero;

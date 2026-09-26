@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b5b6845eb817d8aa970952bcf4a735, type: 3}
   m_Name: PlateBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
-  itemSpeed: 1
-  stoppingForceMultiplier: 0
+  itemSpeed: 30
+  stoppingForceMultiplier: 10
   damage: 1
   audioClipName: 
   visuals: {fileID: 4437901238478997347, guid: 8f447942113fcfd4eb497b161808d85b, type: 3}

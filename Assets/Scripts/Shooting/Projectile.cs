@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        Shoot();        
+              
     }
 
     public void Init(float speed, Vector3 direction, Player shooter, ItemScriptable item)
@@ -20,13 +20,19 @@ public class Projectile : MonoBehaviour
         this.direction = direction;
         this.shooter = shooter;
         this.item = item;
+
+        Shoot();
     }
 
     void Shoot()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
 
-        rb.AddForce(direction * speed);
+        rb.AddForce(direction * speed, ForceMode.VelocityChange);
+
+        Instantiate(item.visuals, transform);
+
+        rb.angularVelocity = Random.insideUnitSphere * 20;
     }
 
     void Hit(Player player)
@@ -53,7 +59,7 @@ public class Projectile : MonoBehaviour
             Break();
         }
 
-        else if (!other.CompareTag("Counter"))
+        else if (other.CompareTag("Wall"))
         {
             Break();
         }
