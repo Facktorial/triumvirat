@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01b5b6845eb817d8aa970952bcf4a735, type: 3}
-  m_Name: BowBreakable
+  m_Name: BowlBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 1
-  movementSpeed: 2
+  stoppingForceMultiplier: 0
   damage: 1
+  audioClipName: 
+  visuals: {fileID: 2002405959572973897, guid: 6d672655e396c96458862918215f703c, type: 3}
   itemType: 0

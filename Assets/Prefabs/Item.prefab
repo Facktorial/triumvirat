@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709b1a72eb4de4b6fbe984ca49128e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemHolder
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 9cc868e4988a0ead0baef67b5d6f4a2d, type: 2}
 --- !u!54 &-5030796944415790976
 Rigidbody:
   m_ObjectHideFlags: 0

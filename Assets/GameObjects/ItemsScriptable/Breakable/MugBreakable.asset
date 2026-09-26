@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MugBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 1
-  movementSpeed: 2
+  stoppingForceMultiplier: 0
   damage: 1
+  audioClipName: 
+  visuals: {fileID: 6198770669473587035, guid: 2088c5fae8805b347b4b61eed80c66c3, type: 3}
   itemType: 0

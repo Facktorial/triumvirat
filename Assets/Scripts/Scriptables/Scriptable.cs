@@ -7,6 +7,7 @@ public class ItemScriptable : ScriptableObject
     public float stoppingForceMultiplier;
     public float damage;
     public string audioClipName;
+    public Transform visuals;
 
     public enum ItemType
     {

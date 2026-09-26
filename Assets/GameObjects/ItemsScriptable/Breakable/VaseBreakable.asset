@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: VaseBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 0
-  movementSpeed: 0
+  stoppingForceMultiplier: 0
   damage: 0
+  audioClipName: 
+  visuals: {fileID: 5713036184040984674, guid: fc8c4ed441f69cb41b2bd0f14c2ce6a4, type: 3}
   itemType: 0

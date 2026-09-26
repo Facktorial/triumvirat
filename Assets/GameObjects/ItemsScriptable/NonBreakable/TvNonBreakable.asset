@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: TvNonBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 1
-  movementSpeed: 2
+  stoppingForceMultiplier: 0
   damage: 1
+  audioClipName: 
+  visuals: {fileID: 4561202770418618899, guid: d7bfe9f44e89049428121293e3e36fd8, type: 3}
   itemType: 1
