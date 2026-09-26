@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private int health = 10;
 
     public int Id => id;
-    public int CurrentHealth => health;
+    public int CurrentHealth => currentHealth;
+    [SerializeField] public int currentHealth = 10;
 
     Movement movement;
     [HideInInspector] public Item currentItem;
