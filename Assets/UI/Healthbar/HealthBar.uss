@@ -1,0 +1,14 @@
+.health-bar {
+    /* position/top/left/right/bottom are set at runtime by HealthBarController
+       via HudPositioning, so the same prefab can be placed at any corner
+       per instance without editing this file. */
+    flex-direction: row;
+}
+
+.heart {
+    width: 32px;
+    height: 28px;
+    margin-left: 4px;
+    -unity-background-scale-mode: scale-to-fit;
+    /* background-image is assigned at runtime from MainMenuController/HealthBarController */
+}
