@@ -9,6 +9,9 @@ public class Projectile : MonoBehaviour
     Player shooter;
     ItemScriptable item;
 
+    [SerializeField] GameObject itemBreakParticles;
+
+
     private void Update()
     {
               
@@ -20,6 +23,7 @@ public class Projectile : MonoBehaviour
         this.direction = direction;
         this.shooter = shooter;
         this.item = item;
+        damage = item.damage;
 
         Shoot();
     }
@@ -38,12 +42,16 @@ public class Projectile : MonoBehaviour
     void Hit(Player player)
     {
         player.Hit(damage);
+        player.GetComponent<Rigidbody>().AddForce(direction * 1000,ForceMode.VelocityChange);
     }
 
     void Break()
     {
         print("Bereaking");
         AudioManager.Instance.PlaySFX(item.audioClipName, transform.position);
+        var particles = Instantiate(itemBreakParticles);
+        particles.transform.position = transform.position;
+
         Destroy(gameObject);
     }
 

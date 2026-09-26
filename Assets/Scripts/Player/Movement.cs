@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float stoppingFroceOrigin;
     [SerializeField] float stoppingForce;
+    [SerializeField] ParticleSystem walkingParticles;
 
     Rigidbody rb;
 
@@ -38,6 +39,15 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        if (moving && walkingParticles.isStopped)
+        {
+            walkingParticles.Play();
+        }
+        else if(!moving && !walkingParticles.isStopped)
+        {
+            walkingParticles.Stop();
+        }
+
         if (!moving)
         {
             rb.linearDamping = 100;

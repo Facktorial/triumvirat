@@ -1,25 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] int id;
     [SerializeField] int health;
+    [SerializeField] int currentHealth;
 
     Movement movement;
     [HideInInspector] public Item currentItem;
     Item sellectedItem;
-    [SerializeField] private Transform handSocket;
 
     public bool canShoot = true;
     [SerializeField] GameObject projectile;
     [SerializeField] KeyCode shoot;
-
-    [SerializeField] PlayerVisuals playerVisuals;
-
-    Transform itemInHand;
 
     public PlayerState currentPlayerState;
 
@@ -33,8 +27,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = health;
+
         movement = GetComponent<Movement>();
-        playerVisuals = GetComponent<PlayerVisuals>();
         currentPlayerState = PlayerState.Alive;
     }
 
@@ -49,34 +44,23 @@ public class Player : MonoBehaviour
         {
             ItemPickUp();
         }
-
-        
     }
 
     public void Hit(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
 
         print("Player hit: " + damage.ToString());
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             currentPlayerState = PlayerState.Dead;
             movement.canMove = false;
             GameManager.Instance.AddScore(id);
-            StartCoroutine(DeathRoutine());
+            GameManager.Instance.RestartGame();
             print("Player dead");
-
-            playerVisuals.PlayDie();
+            currentHealth = health;
         }
-    }
-
-    IEnumerator DeathRoutine()
-    {
-        yield return new WaitForSeconds(3);
-        GameManager.Instance.RestartGame();
-
-        playerVisuals.PlayRewive();
     }
 
     void ItemPickUp()
@@ -87,6 +71,8 @@ public class Player : MonoBehaviour
 
         foreach (Item item in availableItems)
         {
+            if (item.hidden) continue;
+
             if (closestItem == null)
             {
                 closestItem = item;
@@ -107,11 +93,7 @@ public class Player : MonoBehaviour
         availableItems.Remove(closestItem);
         currentItem = closestItem;
         canShoot = true;
-        playerVisuals.PlayPickUp();
         print("Got item");
-
-        var _item = Instantiate(currentItem.GetItem().visuals, handSocket);
-        itemInHand = _item;
     }
 
     void Shoot()
@@ -126,10 +108,6 @@ public class Player : MonoBehaviour
 
         currentItem = null;
         canShoot = false;
-
-        Destroy(itemInHand.gameObject);
-
-        playerVisuals.PlayThrow();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -156,5 +134,22 @@ public class Player : MonoBehaviour
             availableItems.Remove(item);
             item.Desellect();
         }
+    }
+
+    public void ResetPlayer()
+    {
+        currentHealth = health;
+        currentItem = null;
+        canShoot = false;
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnGameRestart += ResetPlayer;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnGameRestart -= ResetPlayer;
     }
 }

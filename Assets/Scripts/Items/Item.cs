@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
 
     Vector3 originPosition;
 
-    bool hidden = false;
+    public bool hidden = false;
 
     private void Start()
     {

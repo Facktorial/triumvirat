@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PanNonBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 30
-  stoppingForceMultiplier: 10
-  damage: 1
-  audioClipName: 
+  stoppingForceMultiplier: 2
+  damage: 3
+  audioClipName: Hit1
   visuals: {fileID: 1953505268824636032, guid: 01effda161279d047883e63aa471abb7, type: 3}
   itemType: 0
