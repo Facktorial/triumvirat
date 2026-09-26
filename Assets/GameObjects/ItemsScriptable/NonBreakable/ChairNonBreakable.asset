@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ChairNonBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 1
-  movementSpeed: 2
+  stoppingForceMultiplier: 0
   damage: 1
+  audioClipName: 
+  visuals: {fileID: 4591422061248397784, guid: b148752036e6a2a45aa83aa76c0fd4d7, type: 3}
   itemType: 1

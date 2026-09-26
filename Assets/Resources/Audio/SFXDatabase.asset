@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3291f077e45309a4eaa5b3fe62c4dfc7, type: 3}
+  m_Name: SFXDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::AudioDatabaseScriptable
+  audioClips:
+  - clipName: Hit1
+    clip: {fileID: 8300000, guid: 90287a96c270a954193e3024ef50e557, type: 3}
+    randomPitch: 1
+  - clipName: Hit2
+    clip: {fileID: 8300000, guid: 1f0ffdf9ec493e54bae4ce01d7967d31, type: 3}
+    randomPitch: 1
+  - clipName: Glass1
+    clip: {fileID: 8300000, guid: bcd836e4ecec15246ba842b923a238b8, type: 3}
+    randomPitch: 1
+  - clipName: Step1
+    clip: {fileID: 8300000, guid: da6dae217baa06141bcf0ef687f1fbab, type: 3}
+    randomPitch: 1

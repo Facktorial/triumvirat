@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PlateBreakable
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptable
   itemSpeed: 1
-  movementSpeed: 2
+  stoppingForceMultiplier: 0
   damage: 1
+  audioClipName: 
+  visuals: {fileID: 4437901238478997347, guid: 8f447942113fcfd4eb497b161808d85b, type: 3}
   itemType: 0

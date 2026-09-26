@@ -1,12 +1,13 @@
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptables/Item")]
 public class ItemScriptable : ScriptableObject
 {
     public float itemSpeed;
-    public float movementSpeed;
+    public float stoppingForceMultiplier;
     public float damage;
+    public string audioClipName;
+    public Transform visuals;
 
     public enum ItemType
     {
@@ -14,6 +15,4 @@ public class ItemScriptable : ScriptableObject
         NonBreakable
     }
     public ItemType itemType;
-
-    public GameObject prefab;
 }
