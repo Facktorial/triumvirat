@@ -79,7 +79,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        currentItem.gameObject.SetActive(false);
+        if (closestItem == null) return;
+
+        closestItem.gameObject.SetActive(false);
+
         availableItems.Remove(closestItem);
         currentItem = closestItem;
         canShoot = true;
