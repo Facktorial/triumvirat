@@ -6,10 +6,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] TextMeshProUGUI score1;
-    [SerializeField] TextMeshProUGUI score2;
+    [SerializeField] private ScoreCounterController scoreCounter1;
+    [SerializeField] private ScoreCounterController scoreCounter2;
 
-    [SerializeField] TextMeshProUGUI startCounter;
+    [SerializeField] private HealthBarController healthBar1;
+    [SerializeField] private HealthBarController healthBar2;
+
+    [SerializeField] private TextMeshProUGUI startCounter;
 
     private void Awake()
     {
@@ -18,8 +21,20 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int score1, int score2)
     {
-        this.score1.text = score1.ToString();
-        this.score2.text = score2.ToString();
+        if (scoreCounter1 != null)
+            scoreCounter1.SetScore(score1);
+
+        if (scoreCounter2 != null)
+            scoreCounter2.SetScore(score2);
+    }
+
+    public void UpdateHealth(int health1, int health2)
+    {
+        if (healthBar1 != null)
+            healthBar1.SetHealth(health1);
+
+        if (healthBar2 != null)
+            healthBar2.SetHealth(health2);
     }
 
     public void StartCounter(float time)

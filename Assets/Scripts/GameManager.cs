@@ -23,6 +23,20 @@ public class GameManager : MonoBehaviour
         RestartGame();
     }
 
+    private void LateUpdate()
+    {
+        if (UIManager.Instance == null) return;
+
+        UIManager.Instance.UpdateScore(score1, score2);
+
+        Player player1 = GetPlayerById(1);
+        Player player2 = GetPlayerById(2);
+
+        UIManager.Instance.UpdateHealth(
+            player1 != null ? player1.CurrentHealth : 0,
+            player2 != null ? player2.CurrentHealth : 0);
+    }
+
     public void AddScore(int id)
     {
         switch (id)
@@ -33,8 +47,6 @@ public class GameManager : MonoBehaviour
             case 2:
                 score1++; break;
         }
-
-        UIManager.Instance.UpdateScore(score1, score2);
     }
 
     public void RestartGame()
@@ -48,6 +60,24 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.StartCounter(gameStartTime);
         SpawnPlayers();
+    }
+
+    Player GetPlayerById(int id)
+    {
+        if (players == null) return null;
+
+        foreach (Transform t in players)
+        {
+            if (t == null) continue;
+
+            Player player = t.GetComponent<Player>();
+            if (player != null && player.Id == id)
+            {
+                return player;
+            }
+        }
+
+        return null;
     }
 
     void SpawnPlayers()
