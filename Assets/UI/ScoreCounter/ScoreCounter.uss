@@ -1,0 +1,14 @@
+.score-counter {
+    position: absolute;
+    top: 72px;
+    right: 24px;
+    flex-direction: row;
+}
+
+.score-digit {
+    width: 28px;
+    height: 36px;
+    margin-right: 2px;
+    -unity-background-scale-mode: scale-to-fit;
+    /* background-image is assigned at runtime by ScoreCounterController */
+}
