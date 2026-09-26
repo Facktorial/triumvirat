@@ -236,15 +236,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StubPlayer
   healthBar: {fileID: 41363802}
-  scoreCounter: {fileID: 1370754178}
-  damageKey: 49
-  healKey: 50
-  scoreKey: 51
+  scoreCounter: {fileID: 1370754181}
+  bindingPreset: 0
+  damageKey: 105
+  healKey: 111
+  decreaseScoreKey: 107
+  increaseScoreKey: 108
   resetKey: 52
-  damageAmount: 2
-  healAmount: 2
+  healthAmount: 1
   scoreAmount: 10
-  maxHealth: 10
+  maxHealth: 5
 --- !u!1 &243156165
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,22 +497,43 @@ Transform:
   - {fileID: 1370754180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1370754178 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7295434881240854738, guid: 6fa09a59ac14219579dd0a7651bca5af, type: 3}
+--- !u!1 &1370754177 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3291362479138769715, guid: 6fa09a59ac14219579dd0a7651bca5af, type: 3}
   m_PrefabInstance: {fileID: 1856970268}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcdcb41fde3bb814182f342514d88a03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterController
 --- !u!4 &1370754180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6119120030398437474, guid: 6fa09a59ac14219579dd0a7651bca5af, type: 3}
   m_PrefabInstance: {fileID: 1856970268}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370754181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370754177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b20e4b6a84c2487c83cbf92d99405ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterController
+  digitTextures:
+  - {fileID: 2800000, guid: 1c9fc618b9856a59cbaf555a26c7ad5b, type: 3}
+  - {fileID: 2800000, guid: 9e93e935181db54fca551def87f1e889, type: 3}
+  - {fileID: 2800000, guid: 1fc2d7a36e520801fae68846958c51c8, type: 3}
+  - {fileID: 2800000, guid: e876cdf5686d26e43b23eb96d586bcb4, type: 3}
+  - {fileID: 2800000, guid: db69797ff28b91fa5982ea73d7727372, type: 3}
+  - {fileID: 2800000, guid: 85f7e5c6c3a64ee05b70e484e8dccd6d, type: 3}
+  - {fileID: 2800000, guid: 2bcc7e9483aff746dae203c589820bc6, type: 3}
+  - {fileID: 2800000, guid: 0ebf54b1a8c60708fab7ced522c65f0b, type: 3}
+  - {fileID: 2800000, guid: 72b1b548a132c478f930149b96cfec2a, type: 3}
+  - {fileID: 2800000, guid: 439401eff11f2a81fa05a49ab1cd2bc7, type: 3}
+  currentScore: 0
+  corner: 1
+  marginX: 24
+  marginY: 72
 --- !u!114 &1413738673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2405590369869659552, guid: fa9033f6d30f985d88e38a34d0e773d5, type: 3}
@@ -760,10 +782,14 @@ PrefabInstance:
       propertyPath: 'digitTextures.Array.data[9]'
       value: 
       objectReference: {fileID: 2800000, guid: 439401eff11f2a81fa05a49ab1cd2bc7, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7295434881240854738, guid: 6fa09a59ac14219579dd0a7651bca5af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3291362479138769715, guid: 6fa09a59ac14219579dd0a7651bca5af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1370754181}
   m_SourcePrefab: {fileID: 100100000, guid: 6fa09a59ac14219579dd0a7651bca5af, type: 3}
 --- !u!1 &1951795101
 GameObject:
@@ -792,7 +818,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1951795101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcdcb41fde3bb814182f342514d88a03, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b20e4b6a84c2487c83cbf92d99405ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterController
   digitTextures:
@@ -879,14 +905,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StubPlayer
   healthBar: {fileID: 1413738673}
   scoreCounter: {fileID: 1951795102}
-  damageKey: 49
-  healKey: 50
-  scoreKey: 51
+  bindingPreset: 0
+  damageKey: 113
+  healKey: 101
+  decreaseScoreKey: 97
+  increaseScoreKey: 100
   resetKey: 52
-  damageAmount: 2
-  healAmount: 2
+  healthAmount: 1
   scoreAmount: 10
-  maxHealth: 10
+  maxHealth: 5
 --- !u!4 &2067488195
 Transform:
   m_ObjectHideFlags: 0

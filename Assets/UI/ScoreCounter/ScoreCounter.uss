@@ -1,7 +1,7 @@
 .score-counter {
-    position: absolute;
-    top: 72px;
-    right: 24px;
+    /* position/top/left/right/bottom are set at runtime by ScoreCounterController
+       via HudPositioning, so the same prefab can be placed at any corner
+       per instance without editing this file. */
     flex-direction: row;
 }
 

@@ -7,46 +7,77 @@ using UnityEngine;
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private HealthBarController healthBar;
-    [SerializeField] private int maxHealth = 10;
+    private const int MaxVisibleLives = 5;
 
-    private int _currentHealth;
+    [SerializeField] private HealthBarController healthBar;
+    [SerializeField] private int maxHealth = 5;
+    [SerializeField] private int currentHealth = 5;
+
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+
+    private void Awake()
+    {
+        ClampValues();
+    }
 
     private void Start()
     {
-        _currentHealth = maxHealth;
-
-        // Sync the HUD to the starting value once, in case it defaults
-        // to something else in the Inspector.
-        healthBar.SetHealth(_currentHealth);
+        ClampValues();
+        ApplyHudState();
     }
 
-    // Call this from wherever damage happens — an enemy attack, a trap,
-    // a projectile hit, OnCollisionEnter, etc.
-    public void TakeDamage(int amount)
+    public void Configure(HealthBarController hud, int startingMaxHealth)
     {
-        _currentHealth -= amount;
-        healthBar.Damage(amount); // updates the hearts directly
+        healthBar = hud;
+        maxHealth = Mathf.Clamp(startingMaxHealth, 1, MaxVisibleLives);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        ApplyHudState();
+    }
 
-        if (_currentHealth <= 0)
+    public void SetHealth(int newHealth)
+    {
+        currentHealth = Mathf.Clamp(newHealth, 0, maxHealth);
+        ApplyHudState();
+
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    // Call this from a healing pickup, a potion, a checkpoint, etc.
-    public void RestoreHealth(int amount)
+    public void Add(int incLives)
     {
-        _currentHealth += amount;
-        healthBar.Heal(amount);
+        SetHealth(currentHealth + incLives);
     }
 
-    // Example: snapping directly to a known value, e.g. respawning at full HP,
-    // or a boss fight scripted event that sets health to an exact number.
+    public void TakeDamage(int amount)
+    {
+        Add(-Mathf.Abs(amount));
+    }
+
+    public void RestoreHealth(int amount)
+    {
+        Add(Mathf.Abs(amount));
+    }
+
     public void ResetToFull()
     {
-        _currentHealth = maxHealth;
-        healthBar.SetHealth(_currentHealth);
+        SetHealth(maxHealth);
+    }
+
+    private void ApplyHudState()
+    {
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+
+    private void ClampValues()
+    {
+        maxHealth = Mathf.Clamp(maxHealth, 1, MaxVisibleLives);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
     private void Die()
@@ -59,12 +90,24 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.CompareTag("Hazard"))
         {
-            TakeDamage(2); // one heart's worth
+            TakeDamage(1);
         }
         else if (other.CompareTag("HealthPickup"))
         {
-            RestoreHealth(2);
+            RestoreHealth(1);
             Destroy(other.gameObject);
         }
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        ClampValues();
+
+        if (Application.isPlaying)
+        {
+            ApplyHudState();
+        }
+    }
+#endif
 }
