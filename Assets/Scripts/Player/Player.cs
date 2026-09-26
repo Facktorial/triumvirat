@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -133,7 +134,8 @@ public class Player : MonoBehaviour
         currentItem = null;
         canShoot = false;
 
-        Destroy(itemInHand.gameObject);
+        if (itemInHand != null)
+            Destroy(itemInHand.gameObject);
 
         playerVisuals.PlayThrow();
     }
@@ -170,7 +172,8 @@ public class Player : MonoBehaviour
         currentItem = null;
         canShoot = false;
 
-        
+        if (itemInHand != null)
+            Destroy(itemInHand.gameObject);
     }
 
     private void OnEnable()

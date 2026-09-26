@@ -6352,6 +6352,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1835389199}
     m_Modifications:
+    - target: {fileID: 1078670971615508402, guid: da67db95f04164349b00cf9dd6fbe4ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2689154249932246149, guid: da67db95f04164349b00cf9dd6fbe4ff, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -9801,6 +9805,10 @@ PrefabInstance:
       propertyPath: stoppingFroceOrigin
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4398846507447943969, guid: da67db95f04164349b00cf9dd6fbe4ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6266591803962893944, guid: da67db95f04164349b00cf9dd6fbe4ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.37
@@ -9847,7 +9855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6710969407090185227, guid: da67db95f04164349b00cf9dd6fbe4ff, type: 3}
       propertyPath: shoot
-      value: 256
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
