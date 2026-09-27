@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private HealthBarController healthBar2;
 
     [SerializeField] private TextMeshProUGUI startCounter;
+    [SerializeField] public GameObject menuButtons;
 
     private void Awake()
     {
