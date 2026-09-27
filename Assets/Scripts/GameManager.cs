@@ -123,6 +123,12 @@ public class GameManager : MonoBehaviour
             {
                 Transform spawn = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
+                if (point == null)
+                {
+                    point = spawn;
+                    continue;
+                }
+
                 if (point == spawn) continue;
 
                 t.position = spawn.position;

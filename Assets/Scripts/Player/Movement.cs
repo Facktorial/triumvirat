@@ -157,8 +157,8 @@ public class Movement : MonoBehaviour
 
     void Move(Vector3 direction)
     {
-        moving = true;
         if (!canMove) return;
+        moving = true;
         //transform.position += direction * playerSpeed * Time.deltaTime;
 
         rb.AddForce(GetDirection() * Time.deltaTime * 30, ForceMode.VelocityChange);
@@ -166,10 +166,11 @@ public class Movement : MonoBehaviour
 
     IEnumerator SteppingSoundRoutine()
     {
+
         while (true)
         {
             if (moving)
-                AudioManager.Instance.PlaySFX("Hit2", transform.position);
+                AudioManager.Instance.PlaySFX("Step1", transform.position);
 
             yield return new WaitForSeconds(stepSoundDelay);
         }
