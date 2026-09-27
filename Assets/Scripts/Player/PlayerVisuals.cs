@@ -14,6 +14,8 @@ public class PlayerVisuals : MonoBehaviour
 
     private void Update()
     {
+        if (!Movement.canMove) return;
+
         Vector3 targetDirection = new Vector3(
             Mathf.Lerp(Visuals.forward.x, Movement.GetDirection().x, Time.deltaTime * 33f),
             Mathf.Lerp(Visuals.forward.y, Movement.GetDirection().y, Time.deltaTime * 33f),

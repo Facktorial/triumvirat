@@ -57,9 +57,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, Vector3 direction)
     {
         currentHealth -= damage;
+        Push(direction);
 
         print("Player hit: " + damage.ToString());
 
@@ -74,6 +75,13 @@ public class Player : MonoBehaviour
             playerVisuals.PlayDie();
             StartCoroutine(DeathRoutine());
         }
+    }
+
+    void Push(Vector3 direction)
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.linearDamping = 0;
+        rb.AddForce(direction * 50, ForceMode.VelocityChange);
     }
 
     IEnumerator DeathRoutine()
@@ -124,6 +132,7 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         if (!canShoot || currentItem == null) return;
+        if (!movement.canMove) return;
 
         print("Shot");
 
