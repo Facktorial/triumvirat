@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,38 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         RestartGame();
+    }
+
+    private void InGameMenu()
+    {
+        if (UIManager.Instance == null) return;
+
+        UIManager.Instance.menuButtons.SetActive(true);
+    
+        foreach (Transform t in players)
+        {
+            t.GetComponent<Movement>().canMove = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            InGameMenu();
+        }
+    }
+
+    public void ContinueGame()
+    {
+        if (UIManager.Instance == null) return;
+
+        UIManager.Instance.menuButtons.SetActive(false);
+
+        foreach (Transform t in players)
+        {
+            t.GetComponent<Movement>().canMove = true;
+        }
     }
 
     private void LateUpdate()
